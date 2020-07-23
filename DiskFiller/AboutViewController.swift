@@ -39,7 +39,7 @@ class AboutViewController: UIViewController {
 
     private func openLink(withURLString urlString: String) {
         guard let url = URL(string: urlString) else { return }
-        UIApplication.shared.openURL(url)
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
 

@@ -2,6 +2,13 @@
   <img src="https://raw.githubusercontent.com/adriaan/DiskFiller/master/winking_kitten.png" alt=“Winking Kitten” title=“Winking Kitten“>
 </p>
 
+# Fork
+
+- Update swift version to 5.0
+  - almost no change
+- support APFS
+  - the original coppied a file which in APFS actually takes almost no space. This version simply writes the same file.
+
 # Disk Filler
 
 Disk Filler is a utility app for iOS developers. 

@@ -8,7 +8,7 @@ final class FileHandler {
     var shouldStop = false
 
     let documentsPath: String?
-    let sourcePath: String? = Bundle.main.path(forResource: "winking_kitten", ofType: "jpg")
+    let sourceURL: URL? = Bundle.main.url(forResource: "winking_kitten", withExtension: "jpg")
 
     var numberOfFilesStored: Int?
 
@@ -20,7 +20,7 @@ final class FileHandler {
 
     func fillDisk() {
         shouldStop = false
-        guard let documentsPath = documentsPath, let sourcePath = sourcePath else {
+        guard let documentsPath = documentsPath, let sourceURL = sourceURL, let data = try? Data(contentsOf: sourceURL) else {
             delegate?.fileHandler(fileHander: self, didFailWithError: FileHandlingError.documentsPathNotFound)
             return
         }
@@ -35,7 +35,7 @@ final class FileHandler {
                     let filePath = documentsPath.appending(fileName)
                     if !self.fileManager.fileExists(atPath: filePath) {
                         do {
-                            try self.fileManager.copyItem(atPath: sourcePath, toPath: filePath)
+                            try data.write(to: URL(fileURLWithPath: filePath))
                             self.delegate?.fileHandlerDidAddFile(fileHander: self)
                             self.incrementFilesStored()
                         } catch {
