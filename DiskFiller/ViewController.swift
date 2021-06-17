@@ -23,6 +23,8 @@ class ViewController: UIViewController, FileHandlerDelegate {
         configureButtons()
         enableButtons()
         updateDiskSpaceDisplay()
+        
+        UIApplication.shared.isIdleTimerDisabled = true
     }
 
     @objc func userDidTap(fillButton: UIButton) {
